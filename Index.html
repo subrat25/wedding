@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    /* Cover Section with scroll shadow */
+    .cover-section {
+      background: url('img/hero/homeHero_1.jpeg') no-repeat top right / cover;
+      width: 100%;
+      height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      /* You might want to adjust this as per your layout */
+      text-align: center;
+      color: white;
+    }
+
+    .cover-section.scrolled {
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .cover-section h3 {
+      font-size: 2.5rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 50px 20px;
+      text-align: center;
+      max-width: 95%;
+      margin: 20px auto;
+    }
+
+    /* Profile Image Styles */
+    .profile-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* background-color: #f8f8f8; */
+      padding: 10px;
+      border-radius: 20px;
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+      width: 100%;
+    }
+
+    .profile-image img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Profile Info Box */
+    .profile-info {
+      /* background-color: #f8f8f8; */
+      padding: 15px;
+      border-radius: 10px;
+      /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+      display: flex;
+      font-size: 1.6rem;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+    }
+
+    /* Slideshow with portrait and landscape adjustments */
+    .slideshow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      grid-column: span 2;
+    }
+
+    .slideshow img {
+      width: 80%;
+      height: auto;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .slideshow img.active {
+      display: block;
+    }
+
+    /* Portrait-specific styling in slideshow */
+    .slideshow img.portrait {
+      object-fit: contain;
+      width: 35%;
+      height: auto;
+    }
+
+    /* Video styling */
+    .video {
+      grid-column: span 2;
+      padding: 10px;
+      /* background-color: #f8f8f8; */
+      border-radius: 10px;
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    }
+
+    .video video {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* Program Section with improved styling */
+    .program-section {
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-evenly;
+      gap: 20px;
+      text-align: left;
+      background: linear-gradient(to right, #ffffff, #f4f4f4);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+    }
+
+    .program-section div {
+      width: 500px;
+      padding: 25px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .program-section div:hover {
+      transform: scale(1.2);
+    }
+
+    .program-section h2 {
+      font-size: 1.6rem;
+      color: #007BFF;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .program-section p {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    /* Icon styling for uniform size and alignment */
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .icon1 {
+      /* width: 80px; */
+      height: 80px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .icon2 {
+      width: 80px;
+      height: 80px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    /* Contact Section */
+    .contact-section {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.contact-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 800px; /* Optional, controls width of the whole section */
+}
+
+.map-container {
+  flex: 1; /* Allows the map to take up space next to the contact details */
+}
+
+.contact-details {
+  flex: 1; /* Allows contact details to take up space next to the map */
+}
+
+.contact-details p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+  /* Cover Section */
+  .cover-section h3 {
+    font-size: 1.8rem; /* Smaller font size on mobile */
+  }
+
+  /* Gallery Section */
+  .gallery-section {
+    grid-template-columns: 1fr; /* Stack items in one column */
+  }
+
+  /* Profile Image Styles */
+  .profile-image img {
+    width: 150px; /* Smaller profile images */
+    height: 150px;
+  }
+
+  /* Slideshow */
+  .slideshow img {
+    width: 100%; /* Make images take full width */
+  }
+
+  /* Program Section */
+  .program-section {
+    flex-direction: column; /* Stack program items vertically */
+    padding: 20px; /* Reduce padding */
+  }
+
+  .program-section div {
+    width: auto; /* Full width on mobile */
+    margin-bottom: 20px; /* Spacing between program items */
+  }
+
+  /* Contact Section */
+  .contact-container {
+    flex-direction: column; /* Stack contact details and map vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .map-container, .contact-details {
+    width: 100%; /* Full width for both sections */
+  }
+
+  /* Map Container */
+  .map-container iframe {
+    height: 200px; /* Reduce map height on mobile */
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Cover Section -->
+  <section class="cover-section">
+    <h3>Shaswat and Lopamudra<br>invite you to<br> witness their sacred vows</h3>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <div class="profile-image">
+      <img src="img/hero/groom.jpeg" alt="Groom - Shaswat Panda">
+    </div>
+
+    <div class="profile-info">
+      <p><strong>Shaswat Panda</strong><br>Elder son <br>of <br>Rabindra & Pranati Panda</p>
+    </div>
+
+    <div class="profile-info">
+      <p><strong>Lopamudra Satapathy</strong><br>Daughter<br>of <br> Siba Prasad & Sipra Satapathy</p>
+    </div>
+
+    <div class="profile-image">
+      <img src="img/hero/bride.jpeg" alt="Bride - Lopamudra Satapathy">
+    </div>
+
+    <div class="video">
+      <video controls>
+        <source src="invite-video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="slideshow">
+      <img src="img/hero/invite1.jpeg" class="active" alt="Wedding Invite 1">
+      <img src="img/hero/invite2.jpeg" alt="Wedding Invite 2">
+      <img src="img/hero/invite3.jpeg" alt="Wedding Invite 3">
+      <img src="img/hero/invite4.jpeg" alt="Wedding Invite 4">
+      <img src="img/hero/groom.jpeg" class="portrait" alt="Portrait of Groom">
+      <img src="img/hero/bride.jpeg" class="portrait" alt="Portrait of Bride">
+      <img src="img/hero/rings.jpeg" class="portrait" alt="Rings">
+      <img src="img/hero/couple.jpeg" class="portrait" alt="Couple">
+    </div>
+  </section>
+
+  <!-- Program Section -->
+  <section class="program-section">
+    <div class="wedding-ceremony">
+      <h2><img src="img/extra/wed.jpg" alt="Wedding Ceremony Icon" class="icon1"> Wedding Ceremony</h2>
+      <p><strong><img src="img/extra/date.png" alt="Date Icon" class="icon"> Date:</strong> November 17, 2024</p>
+      <p><strong><img src="img/extra/time.png" alt="Time Icon" class="icon"> Time:</strong> 8:00 PM</p>
+      <p><strong><img src="img/extra/map.png" alt="Map Icon" class="icon"> Venue:</strong> Apex Euphoria, Bhubaneswar
+      </p>
+      <p><a href="https://maps.app.goo.gl/BMuZfeqwnwdGUnoz9" target="_blank">
+          <img src="img/extra/map.png" alt="Map Icon" class="icon"> View in Maps</a></p>
+          <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.7507549150587!2d85.8646986773522!3d20.26916916497524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a1fcf67ca059%3A0xbf9c3c6614dd7052!2sApex%20Euphoria!5e0!3m2!1sen!2sin!4v1730483104055!5m2!1sen!2sin" width="450" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div></div>
+
+    <div class="reception">
+      <h2><img src="img/extra/Reception.png" alt="Reception Icon" class="icon2"> Reception</h2>
+      <p><strong><img src="img/extra/date.png" alt="Date Icon" class="icon"> Date:</strong> November 20, 2024</p>
+      <p><strong><img src="img/extra/time.png" alt="Time Icon" class="icon"> Time:</strong> 7:00 PM</p>
+      <p><strong><img src="img/extra/map.png" alt="Map Icon" class="icon"> Venue:</strong> KM Convention, Bhubaneswar
+      </p>
+      <p><a href="https://maps.app.goo.gl/DXoRwDJga4tsFbAC6" target="_blank">
+          <img src="img/extra/map.png" alt="Map Icon" class="icon"> View in Maps</a></p>
+          <div class="map-container"> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.3918648330896!2d85.86443477469393!3d20.242576714317373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a0ddb47547ef%3A0x8b824edb35c7ae29!2sKM%20Convention!5e0!3m2!1sen!2sin!4v1730483181558!5m2!1sen!2sin" width="450" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div></div>
+  </section>
+
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-container">
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59876.39634078377!2d85.79502151543029!3d20.28889078228487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a1269df4d15b%3A0xfbb5af8bb7a696b2!2sLOTUS%20VILLA!5e0!3m2!1sen!2sin!4v1730482946579!5m2!1sen!2sin"
+                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="contact-details">
+        <p><strong>Contact Us:</strong><br>Panda Family, Lotus Villa, Tankapani Road<br>Bhubaneswar</p>
+      </div>
+    </div>
+  </section>
+  
+  
+
+  <script>
+    // JavaScript for Slideshow
+    const slides = document.querySelectorAll('.slideshow img');
+    let slideIndex = 0;
+
+    function showSlides() {
+      slides.forEach((slide) => slide.classList.remove('active'));
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+
+    setInterval(showSlides, 3000);
+
+    // JavaScript for Cover Section Shadow on Scroll
+    window.addEventListener('scroll', () => {
+      const coverSection = document.querySelector('.cover-section');
+      if (window.scrollY > 100) {
+        coverSection.classList.add('scrolled');
+      } else {
+        coverSection.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+
+</html>
